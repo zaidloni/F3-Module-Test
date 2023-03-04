@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Book Store</title>
+  </head>
+  <body>
+    <header>
+      <h1>Book Store App</h1>
+    </header>
+    <main>
+      <form>
+        <h2>Search For Books By Their Name</h2>
+        <input type="text" placeholder="🔍Search..." />
+        <br />
+        <button id="btn">Search Now!</button>
+      </form>
+      <p style="color: red">
+        Note: Refresh after search to redirect to history page OR close the tab
+        & open again
+      </p>
+      <p style="color: red">
+        Note: If u want to do multiple searches then do not refresh search one
+        after another cuz after refresh it will redirect to history page
+      </p>
+
+      <h3 style="margin-top: 20px" id="data">Book Result for: " "</h3>
+      <div class="book-container"></div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+header {
+  height: 7 0px;
+  border-bottom: 2px solid black;
+  margin-bottom: 20px;
+}
+span {
+  font-size: 22px;
+}
+button {
+  color: black;
+  background-color: white;
+  width: 250px;
+  height: 50px;
+  border-radius: 10px;
+}
+button:hover {
+  cursor: pointer;
+}
+main {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.search {
+  padding: 10px;
+  height: 50px;
+  border: 2px solid black;
+}
+.top-container {
+  font-size: 22px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="book.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Book Store App</h1>
+    </header>
+    <main>
+      <p style="margin: 20px; font-size: large; font-weight: 700">
+        Your Previous Searches
+      </p>
+      <p style="color: red; margin-bottom: 20px">
+        Note: Click here
+        <a href="historyPage.html">historyPage</a>
+        to go to history page again
+      </p>
+      <div class="top"></div>
+      <div class="book-container"></div>
+
+      <script>
+        let bookID = localStorage.getItem("book");
+        let books = JSON.parse(localStorage.getItem("history"));
+
+        /*
+        getting the current book from the localstorage with the help of
+        id we set in the localstorage in history page onClick function
+        */
+        let curBook = books[bookID];
+
+        const bookEl = document.querySelector(".top");
+
+        //setting the book details
+        bookEl.innerHTML = `
+              <p>${+bookID + 1}. ${curBook.search}</p>
+              <p>Searched On: ${curBook.date}</p>
+
+              `;
+        const bookContainerEl = document.querySelector(".book-container");
+
+        let URL =
+          `https://www.googleapis.com/books/v1/volumes?q=` + curBook.search;
+
+        //fetching the current book details
+        async function getBook() {
+          const res = await fetch(URL);
+          const data = await res.json();
+          const books = data.items;
+          books.forEach((book) => {
+            bookContainerEl.innerHTML += `
+              <div class="book">
+                  <img src="${book.volumeInfo.imageLinks?.thumbnail}" alt="" width: "100%"/>
+                  <p><b>Title: </b> ${book.volumeInfo?.title}</p>
+                  <p><b>Author:</b> ${book.volumeInfo?.authors}</p>
+                  <p><b>Page Count:</b> ${book.volumeInfo?.pageCount}</p>
+                  <p><b>Publisher:</b> ${book.volumeInfo?.publisher}</p>
+                  <button id = "buy">Buy Now</button>
+                </div>
+            `;
+          });
+        }
+        //calling the function
+        getBook();
+      </script>
+    </main>
+  </body>
+</html>

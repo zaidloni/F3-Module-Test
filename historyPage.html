@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="historyPage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>History Page</title>
+  </head>
+  <body>
+    <header>
+      <h1>Book Store App</h1>
+    </header>
+    <main>
+      <div class="top-container">
+        <p>Your Previous Searches</p>
+        <button onclick="clearHistory()">Clear Search</button>
+      </div>
+      <div class="search-details"></div>
+    </main>
+
+    <script>
+      const searchDetailsEl = document.querySelector(".search-details");
+
+      //getting the data from the localstorage
+      let bookHistory = JSON.parse(localStorage.getItem("history"));
+
+      //mapping over the data & showing the required info
+      bookHistory.forEach((ele, index) => {
+        searchDetailsEl.innerHTML += `
+             <div  onClick = "handleClick(${index})" class="search top-container">
+          <p> ${index + 1}. ${ele.search}</p>
+          <p>Searched On: ${ele.date}</p>
+        </div>
+        `;
+      });
+
+      //handling the click event on the search item
+      function handleClick(id) {
+        localStorage.setItem("book", id);
+        window.location.href = "./book.html";
+      }
+
+      //clearing the localstorage & redirecting to the index page
+      function clearHistory() {
+        localStorage.clear();
+        window.location.href = "./index.html";
+      }
+    </script>
+  </body>
+</html>
